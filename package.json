@@ -1,0 +1,10 @@
+{
+  "name": "BlurringAtlasForUGUI",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mob-sakai/BlurringAtlasForUGUI.git"
+  },
+  "src": "Assets/Coffee/UIExtensions/BlurringAtlasForUGUI",
+  "license": "MIT"
+}
