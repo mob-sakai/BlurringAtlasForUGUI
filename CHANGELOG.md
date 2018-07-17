@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.2.0](https://github.com/mob-sakai/BlurringAtlasForUGUI/tree/v0.2.0) (2018-07-17)
+
+[Full Changelog](https://github.com/mob-sakai/BlurringAtlasForUGUI/compare/v0.1.0...v0.2.0)
+
+**Fixed bugs:**
+
+- Shader error has occurred in D3D9 or D3D11\_9X [\#3](https://github.com/mob-sakai/BlurringAtlasForUGUI/issues/3)
+
 ## [v0.1.0](https://github.com/mob-sakai/BlurringAtlasForUGUI/tree/v0.1.0) (2018-07-13)
 
 [Full Changelog](https://github.com/mob-sakai/BlurringAtlasForUGUI/compare/f46fb41d0e9bbbaf62a41b02e386a7742aad31ab...v0.1.0)
