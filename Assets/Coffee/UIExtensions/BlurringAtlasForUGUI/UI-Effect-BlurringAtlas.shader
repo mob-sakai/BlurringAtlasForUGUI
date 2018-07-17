@@ -16,6 +16,8 @@ Shader "UI/Hidden/UI-Effect-BlurringAtlas"
 		[Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
 	}
 
+
+
 	SubShader
 	{
 		Tags
@@ -50,8 +52,12 @@ Shader "UI/Hidden/UI-Effect-BlurringAtlas"
 		CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
+			#if !defined(SHADER_API_D3D11_9X) && !defined(SHADER_API_D3D9)
 			#pragma target 2.0
-			
+			#else
+			#pragma target 3.0
+			#endif
+
 			#pragma multi_compile __ UNITY_UI_ALPHACLIP
 			
 			#include "UnityCG.cginc"
@@ -99,30 +105,21 @@ Shader "UI/Hidden/UI-Effect-BlurringAtlas"
 			}
 
 			// Sample texture with blurring.
-			fixed4 Tex2DBlurring (sampler2D tex, half2 uv, half2 blur, half4 mask)
+			fixed4 Tex2DBlurring (sampler2D tex, half2 texcood, half2 blur, half4 mask)
 			{
 				const int KERNEL_SIZE = 7;
-				
 				float4 o = 0;
 				float sum = 0;
-				float weight;
-				half2 texcood;
-				fixed4 clear = fixed4(0.5,0.5,0.5,0);
+				const fixed4 clear = fixed4(0.5,0.5,0.5,0);
 				for(int x = -KERNEL_SIZE/2; x <= KERNEL_SIZE/2; x++)
 				{
 					for(int y = -KERNEL_SIZE/2; y <= KERNEL_SIZE/2; y++)
 					{
-						texcood = uv;
-						texcood.x += blur.x * x;
-						texcood.y += blur.y * y;
-						weight = 1.0/(abs(x)+abs(y)+0.5);
-						fixed masked = step(mask.x, texcood.x)
-								* step(mask.y, texcood.y)
-								* step(texcood.x, mask.z)
-								* step(texcood.y, mask.w);
-
-						o += lerp(clear, tex2D(tex, texcood), masked)*weight;
+						half weight = (4 - abs(x)) * (4 - abs(y));
+						half2 uv = texcood + blur * half2(x,y);
 						sum += weight;
+						fixed masked = min(mask.x <= uv.x, uv.x <= mask.z) * min(mask.y <= uv.y, uv.y <= mask.w);
+						o += lerp(clear, tex2D(tex, uv), masked) * weight;
 					}
 				}
 				return o / sum;

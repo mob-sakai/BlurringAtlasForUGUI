@@ -17,7 +17,7 @@ namespace Coffee.UIExtensions
 		// Constant or Static Members.
 		//################################
 		public const string shaderName = "UI/Hidden/UI-Effect-BlurringAtlas";
-		const int KernelSize = 7;
+		const int KernelSize = (7-1)*2;
 
 
 		//################################
