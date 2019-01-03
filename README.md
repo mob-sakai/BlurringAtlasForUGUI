@@ -5,7 +5,7 @@ BlurringAtlasForUGUI
 
 A blur effect for uGUI that is effective even for atlas images including dynamic fonts.
 
-**NOTE: This project _will be_ merge to [UIEffect](https://github.com/mob-sakai/UIEffect).**
+### NOTE: This project has been integrated into [UIEffect](https://github.com/mob-sakai/UIEffect), so we are NOT continuing development in this repository.
 
 [![](https://img.shields.io/github/release/mob-sakai/BlurringAtlasForUGUI.svg?label=latest%20version)](https://github.com/mob-sakai/BlurringAtlasForUGUI/releases)
 [![](https://img.shields.io/github/release-date/mob-sakai/BlurringAtlasForUGUI.svg)](https://github.com/mob-sakai/BlurringAtlasForUGUI/releases)
